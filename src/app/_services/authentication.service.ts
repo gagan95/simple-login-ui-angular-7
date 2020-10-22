@@ -36,7 +36,17 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
        localStorage.removeItem('currentUser');
-       this.currentUserSubject.next(null);
-       return this.http.get(`${config.apiUrl}/users/logout`);
+      
+       return this.http.get(`${config.apiUrl}/users/logout`).pipe(map(data => {
+if(data){
+    this.currentUserSubject.next(null); 
+    return data;
+}else{
+    return data;
+}
+       
+    },error=>{
+        console.error(error)
+    }));
     }
 }

@@ -24,7 +24,6 @@ export class AuditComponent implements OnInit {
     private loadAllUsers() {
         this.userService.getAudit().pipe(first()).subscribe(users => {
             this.users = users;
-            console.log(users)
         });
     }
 
